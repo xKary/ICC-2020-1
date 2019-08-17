@@ -1,0 +1,29 @@
+//Soluciones a los errores del archivo Sintaxis.java
+
+Línea 7: por convención no se pueden tener 2 ; en la misma línea. Separaré a = 3; y c = -7; con un enter.
+
+Línea 9: el tipo de dato "boleaN" no existe, es boolean. Escribí bien el tipo de dato
+Línea 9: el tipo de dato boolean sólo puede ser verdadero o falso. Cambié el 0 por false.
+
+Lınea 11:  Se asignó a un byte un valor fuera de su rango.  Cambie este valor a 127.
+
+Línea 12: el rango del tipo de dato short va de -32768 a 32767, por eso este tipo de dato
+          no puede guardar el valor -32769. Cambié el -32769 por -32768
+
+Línea 14: se usa la variable Discriminante, la cual no está declarada. Cabié Discriminante por discriminante.
+Línea 14: se utiliza el tipo de dato long, el cual solo acepta números enteres, pero por la operación que se
+          realiza puede tener número decimales usar este tipo de dato no es lo ideal. Cambié el tipo de dato long por double.
+
+Línea 17: el tipo de dato "Char" se declara char. Cambié el Char por char.
+
+Línea 19: se asigna un valor a una variable no declarada con el identificador "ch". Cambié "ch" por "ch1" que sí está
+          declarada.
+Línea 19: la variable con identificador "ch2" es de tipo char, por lo cual su valor, el cual sólo puede ser un carácter
+          se asigna con '(comilla simple). Cambié ch2 = "w" por ch2 = 'w'.
+Línea 19: por convención no se pueden tener 2 ; en la misma línea. Separaré ch1 = 'g' y ch2 = 'w' con un enter.
+
+Error de ejecución:
+  Exception in thread "main" java.lang.ArithmeticException: / by zero
+	at Sintaxis.main(Sintaxis.java:21)
+  En la línea 21 se intenta dividir entre 0, con 1/(a-3), dónde a = 3, lo cuál no es posible.
+  Le sume 1 a la resta a-3, 1/((a-3)+1)
