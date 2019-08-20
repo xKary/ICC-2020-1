@@ -1,0 +1,18 @@
+Programa PrePost.java
+Explica por qué se imprime 17 dos veces.
+	Porque en despues de que se manda a pantalla 18,porque x = 18.
+	Se imprime en pantalla pantalla --x lo que es predecremento, o sea
+	quitarle 1 a x antes de mostrarlo, entonces muestra 17.
+	Y despues se impirme x-- que es postdecremento, o sea despues de
+	mostrar el 17 le quita uno, dejando al final x = 16.
+
+Programa Operadores.java
+Explicar la razón del resultado obtenido.
+	 En la primera division como se dividen entre números enteros, a pesar
+	 de que el resultado sea decimal java regresa un número entero por el
+	 tipo de dato del dividendo. 
+	 La segunda al dividir un número de tipo duoble con un entero, se
+	 regresa  un número de tipo double porque se esta dividiendo un double
+	 y no un entero.
+
+	
