@@ -24,11 +24,8 @@ public class RFC {
 		apellidoMaterno = nombreCompleto.substring(separador + 1,nombreCompleto.length());
 
 		//Separar la fecha
-		//Día
 		dia = nacimiento.substring(0,2);
-		//Mes
 		mes = nacimiento.substring(3,5);
-		//Año
 		año = nacimiento.substring(8,nacimiento.length());
 
 		//Armar el RFC
