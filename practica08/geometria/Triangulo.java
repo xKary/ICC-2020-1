@@ -88,11 +88,17 @@ public class Triangulo{
     public Punto getA(){
 	return a;
     }
-
+    /**
+     * Regresa el vertice B
+     * @return Punto b
+     */
     public Punto getB(){
 	return b;
     }
-
+    /**
+     * Regresa el vertice C
+     * @return Punto c
+     */
     public Punto getC(){
 	return c;
     }
