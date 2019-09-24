@@ -1,7 +1,7 @@
 /**
  * Clase para practicar el uso de arreglos y la estructura for.
  */
-public class Main {
+public class Arreglos {
 
     /**
      * Regresa el índice de un elemento en el arreglo dado, o -1 si no aparece.
@@ -10,14 +10,13 @@ public class Main {
      * @return el índice de k en arr, o -1 si no aparece
      */
     public static int buscar(int[] arr, int k) {
-        // Implementar
+    // Implementar
     int indice = 0;
     int i = 0;
-    while(arr[i] != k && i< arr.length-1){
-            i++;
-    }
-    indice = (arr[i] == k)? i: -1;
-	
+      while(arr[i] != k && i < arr.length-1)
+              i++;
+      indice = (arr[i] == k)? i: -1;
+
       return indice;
     }
 
@@ -28,12 +27,11 @@ public class Main {
      */
     public static int max(int[] arr) {
         // Implementar
-	int mayor = arr[0];
-	for(int i =0; i<(arr.length-1); i++){
-	    if(arr[i] > mayor){
-		mayor = arr[i];
-	    }
-	}
+    	int mayor = arr[0];
+    	for(int i =0; i < arr.length; i++){
+    	    if(arr[i] > mayor)
+    		      mayor = arr[i];
+    	}
         return mayor;
     }
 
@@ -45,17 +43,16 @@ public class Main {
      */
     public static boolean consecutivos(int[] arr, int k) {
         // Implementar
-	boolean respuesta = false;
-	int suma = 0;
-	for(int i=0; i< (arr.length - 1); i++){
-	    suma = arr[i+1] + arr [i];
-	    if(suma == k){
-		respuesta = true;
-	    }
-	}
+    	boolean respuesta = false;
+    	int suma = 0;
+    	for(int i = 1; i < arr.length; i++){
+    	    suma = arr[i-1] + arr [i];
+    	    if(suma == k)
+    		      respuesta = true;
+    	}
         return respuesta;
     }
-    
+
     public static long suma(int[] arr){
         long suma = 0;
         for(int i = 0; i < arr.length; i++){
@@ -69,18 +66,19 @@ public class Main {
     public static void main(String[] args) {
         pruebasDe2a4();
         prueba5();
-        
+
     }
     private static void prueba5(){
         int[] arr = new int[5];
+        //Llenar arreglo
         for(int i = 0; i < arr.length; i++){
             arr[i] = i;
         }
-	//La suma de  0+1+2+3+4 = 10
+	      //La suma de  0+1+2+3+4 = 10
         if(suma(arr) != 10)
-            System.out.println("La suma es 6");
-        else 
-            System.out.println("La suma fuciona");
+            System.out.println("La suma es incorrecta.");
+        else
+            System.out.println("La suma fuciona.");
     }
     private static void pruebasDe2a4() {
         var random = new java.util.Random();
@@ -96,7 +94,7 @@ public class Main {
         for (int i = 1; i < arrI.length; i++) {
             arrI[i] = arrI[i - 1] + random.nextInt(COTA) + 1;
         }
-        
+
         java.util.Collections.shuffle(java.util.Arrays.asList(arrI));
         int[] arr = java.util.Arrays.stream(arrI).mapToInt(Integer::intValue).toArray();
         int a = arr[aPos], b = arr[bPos];
@@ -114,7 +112,7 @@ public class Main {
         }
         if (buscar(arr, Integer.MIN_VALUE) != -1) {
             imprimir("arr = %s", java.util.Arrays.toString(arr));
-            imprimir("buscar(arr, %d) debió regresar %d pero regresó %d.\n", 
+            imprimir("buscar(arr, %d) debió regresar %d pero regresó %d.\n",
                 Integer.MIN_VALUE, -1, buscar(arr, Integer.MIN_VALUE));
             mal = true;
         }
@@ -130,7 +128,7 @@ public class Main {
         // Consecutivos
         if (consecutivos(arr, -10)) {
             imprimir("arr = %s", java.util.Arrays.toString(arr));
-            imprimir("consecutivos(arr, -10) debió regresar false pero regresó true.\n");   
+            imprimir("consecutivos(arr, -10) debió regresar false pero regresó true.\n");
             mal = true;
         }
         int c = aPos < arr.length - 1 ? aPos : bPos;
@@ -145,7 +143,7 @@ public class Main {
             System.out.println("Los incisos 2, 3, y 4 están bien.");
         }
     }
-    
+
     private static void imprimir(String format, Object... objs) {
         System.out.println(String.format(format, objs));
     }
