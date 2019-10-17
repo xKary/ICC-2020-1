@@ -56,19 +56,23 @@ public class Cadena {
       boolean encontrado = false;
       boolean cadenaEn = true;
       int i = 0;
-      while(i < chars.length && !encontrado){
-        if (chars[i] == cadena.charAt(i)) {
+      int k = 0;
+      while(i < chars.length && !encontrado && i < cadena.length()){
+        if (charAt(i) == cadena.charAt(0)) {
           int e = i;
-          while (e < cadena.length() && cadenaEn) {
-            if (chars[e] != cadena.charAt(e)) {
+          System.out.println("entro");
+          while (e < cadena.length() && cadenaEn && e < chars.length) {
+            if (charAt(e) != cadena.charAt(k))
               cadenaEn = false;
-            }
             e++;
+            k++;
           }
           encontrado = cadenaEn;
         }
         i++;
       }
+      System.out.println(k);
+      System.out.println(encontrado);
       return (encontrado)? i-1: -1;
     }
     /**

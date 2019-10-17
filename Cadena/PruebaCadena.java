@@ -4,7 +4,8 @@ public class PruebaCadena{
     System.out.println(cade1);
     char[] llena1 = {'a','e','i','o','u'};
     Cadena cade2 = new Cadena(llena1);
-    //System.out.println(cade2.indexOf("ei"));
+    System.out.println("indece " + cade2.indexOf("i"));
+    System.out.println("indece " + cade2.indexOf("o"));
     System.out.println(cade2);
     System.out.println(cade2.longitud());
     char[] llena2 = {'a','e','a','o','a'};
