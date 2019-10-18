@@ -173,7 +173,7 @@ public class PruebaMatriz {
     public void probarDeterminante() {
         int p = m < n ? n : m;
         for (int i = 0; i < p; i++) {
-            m3.asignarEntrada(0, i, 0);   
+            m3.asignarEntrada(0, i, 0);
         }
         assertThat(m3.determinante()).isWithin(TOLERANCE).of(0);
         for (int j = 0; j < p; j++) {
@@ -182,6 +182,7 @@ public class PruebaMatriz {
         assertThat(m4.determinante()).isWithin(TOLERANCE).of(0);
         Matriz matriz = new Matriz(4, 4);
         double[][] ds = {{9, 1, 2, 8}, {2, 9, 7, 3}, {3, 4, 8, 5}, {5, 8, 3, 3}};
+        p = 4;
         for (int i = 0; i < p; i++) {
             for (int j = 0; j < p; j++) {
                 matriz.asignarEntrada(ds[i][j], i, j);

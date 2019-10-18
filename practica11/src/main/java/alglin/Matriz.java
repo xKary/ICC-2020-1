@@ -1,4 +1,4 @@
-//package alglin;
+package alglin;
 
 /**
  * Representa una matriz de mxn con entradas en los reales.
@@ -16,11 +16,11 @@ public class Matriz {
      * @param n el número de columnas
      */
     public Matriz(int m, int n) {
-        if (m > 0 && n > 0) {
-          datos = new double[m][n];
-          this.m = m;
-          this.n = n;
-        }
+      if (m > 0 && n > 0) {
+        this.m = m;
+        this.n = n;
+        datos = new double [m][n];
+      }
     }
 
     /**
@@ -31,10 +31,10 @@ public class Matriz {
      * @return la entrada i,j
      */
     public double obtenerEntrada(int i, int j) {
-        if (i <= m && j <= n) {
-          return datos[i][j];
-        }
-        return 0;
+      if (i >= 0 && i <= m && j >= 0 && j <= n ) {
+        return datos[i][j];
+      }
+      return 0;
     }
 
     /**
@@ -45,7 +45,7 @@ public class Matriz {
      * @param j    la columna donde se insertará <code>dato</code>
      */
     public void asignarEntrada(double dato, int i, int j) {
-      if (i <= m && j <= n) {
+      if (i <= m && j <= n && j >= 0 && i >= 0) {
         datos[i][j] = dato;
       }
     }
@@ -58,17 +58,17 @@ public class Matriz {
      * @return una matriz nueva que resulta de sumar esta con <code>otra</code>
      */
     public Matriz sumar(Matriz otra) {
-        if (m != otra.m || n != otra.n) {
-          return null;
-        }else{
-          Matriz suma = new Matriz(m,n);
-          for (int i = 0; i < m ; i++) {
-            for (int j = 0; j < n ;j++ ) {
-              suma.asignarEntrada(datos[i][j] + otra.obtenerEntrada(i,j),i,j);
-            }
+      if (m != otra.m || n != otra.n) {
+        return null;
+      }else{
+        Matriz suma = new Matriz(m,n);
+        for (int i = 0; i < m ; i++) {
+          for (int j = 0; j < n ;j++ ) {
+            suma.asignarEntrada(datos[i][j] + otra.obtenerEntrada(i,j),i,j);
           }
-          return suma;
         }
+        return suma;
+      }
     }
 
     /**
@@ -78,13 +78,13 @@ public class Matriz {
      * @return una matriz nueva que resulta de multiplicar esta por <code>c</code>
      */
     public Matriz escalar(double c) {
-        Matriz escalar = new Matriz(m,n);
-        for (int i = 0; i < m ; i++) {
-          for (int j = 0; j < n ;j++ ) {
-            escalar.asignarEntrada(c * datos[i][j],i,j);
-          }
+      Matriz escalar = new Matriz(m,n);
+      for (int i = 0; i < m ; i++) {
+        for (int j = 0; j < n ; j++ ) {
+          escalar.asignarEntrada(c * datos[i][j],i,j);
         }
-        return escalar;
+      }
+      return escalar;
     }
 
     /**
@@ -94,7 +94,15 @@ public class Matriz {
      * @return una matriz nueva que resulta de eliminar la k-ésima fila de esta matriz
      */
     public Matriz eliminarFila(int k) {
-        return null;
+      Matriz nueva = new Matriz(m-1,n);
+      int fila = 0;
+      for (int i = 0; i < m ; i++)
+        if (i != k) {
+          for (int j = 0; j < n ; j++ )
+            nueva.asignarEntrada(obtenerEntrada(i,j),fila,j);
+          fila++;
+        }
+      return nueva;
     }
 
     /**
@@ -104,7 +112,18 @@ public class Matriz {
      * @return una matriz nueva que resulta de eliminar la k-ésima columna de esta matriz
      */
     public Matriz eliminarColumna(int k) {
-        return null;
+      Matriz nueva = new Matriz(m, n-1);
+      int columna;
+      for (int i = 0; i < m; i++){
+          columna = 0;
+          for (int j = 0; j < n; j++ ){
+            if (j != k) {
+              nueva.asignarEntrada(obtenerEntrada(i,j),i,columna);
+              columna++;
+            }
+          }
+      }
+      return nueva;
     }
 
     /**
@@ -112,9 +131,20 @@ public class Matriz {
      *
      * @return el determinante de esta matriz
      */
-    public double determinante() {
-        return 0;
-    }
+     public double determinante() {
+       double determinante = 0;
+       if (m == n) {
+         if(m == 1) {
+           return obtenerEntrada(0, 0);
+         }
+         for(int i = 0; i < m; i++) {
+           double signo = Math.pow(-1, 2 + i);
+           Matriz matrizMulti = eliminarFila(0).eliminarColumna(i);
+           determinante += signo * obtenerEntrada(0, i) * matrizMulti.determinante();
+         }
+       }
+       return determinante;
+     }
 
     /**
      * Regresa los datos de esta matriz de tal forma que las columnas están separadas por un espacio
@@ -127,14 +157,13 @@ public class Matriz {
      */
     @Override
     public String toString() {
-        String matriz = new String();
-        for (int i = 0; i < m ; i++) {
-          for (int j = 0; j < n ;j++ ) {
-            matriz += datos[i][j] + " ";
-          }
-          matriz += "\n";
-        }
-        return matriz;
+      String matriz = new String();
+      for (int i = 0; i < m ; i++) {
+        for (int j = 0; j < n ;j++ )
+          matriz += (j != n-1) ? datos[i][j] + " ": datos[i][j];
+        matriz += (i != m-1) ? "\n":"";
+      }
+      return matriz;
     }
 
     /**
@@ -150,12 +179,13 @@ public class Matriz {
       if (this == obj) {
         return true;
       }
-
       if (obj == null || getClass() != obj.getClass()) {
         return false;
       }
       Matriz otra = (Matriz) obj;
-
+      if (m != otra.m || n != otra.n) {
+        return false;
+      }
       for (int i = 0; i < m ; i++) {
         for (int j = 0; j < n ; j++) {
           if (datos [i][j] != otra.datos[i][j]) {
