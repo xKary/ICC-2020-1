@@ -11,12 +11,12 @@ public class pruebaPeon {
     Peon [] blancos = new Peon[4];
 
     negros[0] = new Peon(Color.NEGRO,new Posicion(1,1));
-    negros[1] = new Peon(Color.NEGRO,new Posicion(2,3));
+    negros[1] = new Peon(Color.NEGRO,new Posicion(2,4));
     negros[2] = new Peon(Color.NEGRO,new Posicion(1,5));
     negros[3] = new Peon(Color.NEGRO,new Posicion(2,7));
 
     blancos[0] = new Peon(Color.BLANCO,new Posicion(6,1));
-    blancos[1] = new Peon(Color.BLANCO,new Posicion(5,3));
+    blancos[1] = new Peon(Color.BLANCO,new Posicion(5,4));
     blancos[2] = new Peon(Color.BLANCO,new Posicion(4,5));
     blancos[3] = new Peon(Color.BLANCO,new Posicion(6,7));
 

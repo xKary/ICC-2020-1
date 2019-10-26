@@ -27,6 +27,7 @@ public class Dama extends Pieza {
         if (aux.obtenerColor() != obtenerColor()) {
           jugadas.add(new Posicion (i, columna));
         }
+        break;
       }
     }
     //Moverse hacia el 7
@@ -38,6 +39,7 @@ public class Dama extends Pieza {
         if (aux.obtenerColor() != obtenerColor()) {
           jugadas.add(new Posicion (i, columna));
         }
+        break;
       }
     }
     //Moverse hacia la derecha
@@ -76,7 +78,7 @@ public class Dama extends Pieza {
         break;
       }
     }
-    for (int i = fila,j = columna; i <= 7 && j <= 7; i++,j++) {
+    for (int i = columna + 1,j = fila + 1; i <= 7 && j <= 7; i++,j++) {
       Pieza aux = tab.obtenerPieza(j,i);
       if (aux == null) {
         jugadas.add(new Posicion (j,i));
@@ -87,7 +89,7 @@ public class Dama extends Pieza {
         break;
       }
     }
-    for (int i = fila,j = columna; i >= 0 && j <= 7 ; i--,j++) {
+    for (int i = fila - 1 ,j = columna + 1; i >= 0 && j <= 7 ; i--,j++) {
       Pieza aux = tab.obtenerPieza(j,i);
       if (aux == null) {
         jugadas.add(new Posicion (j,i));
@@ -98,7 +100,7 @@ public class Dama extends Pieza {
         break;
       }
     }
-    for (int i = columna,j = fila; j <= 7 && i >= 0; j++, i--) {
+    for (int i = columna - 1,j = fila + 1; j <= 7 && i >= 0; j++, i--) {
       Pieza aux = tab.obtenerPieza(j,i);
       if (aux == null) {
         jugadas.add(new Posicion (j,i));

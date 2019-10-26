@@ -1,11 +1,10 @@
-package ajedrez.piezas;
-import java.util.List;
 /**
  * Programa para probar la lista de jugadas válidas de la pieza Dama
  * @author Prado Oropeza Karina Vianey
 */
 public class pruebaDama {
   public static void main(String[] args) {
+    Tablero tab = Tablero.obtenerInstancia();
 
     Peon [] negros = new Peon [5];
     Peon [] blancos = new Peon[5];
@@ -24,15 +23,15 @@ public class pruebaDama {
     blancos[3] = new Peon(Color.BLANCO,new Posicion(6,6));
     blancos[4] = new Peon(Color.BLANCO,new Posicion(6,7));
 
-    // List<Posicion> jugadas = damaB.obtenerJugadasLegales();
-    // System.out.println("--- Jugas dama blanca ---");
-    // for (Posicion jugada: jugadas) {
-    //   System.out.println("Fila: " + jugada.obtenerFila() + "\t" +
-    //                      "Columna: " + jugada.obtenerColumna() + "\n");
-    // }
-    List<Posicion> jugadas = damaN.obtenerJugadasLegales();
-    System.out.println("--- Jugas dama negra ---");
+    List<Posicion> jugadas = damaB.obtenerJugadasLegales();
+    System.out.println("--- Jugas dama blanca ---");
     for (Posicion jugada: jugadas) {
+      System.out.println("Fila: " + jugada.obtenerFila() + "\t" +
+                         "Columna: " + jugada.obtenerColumna() + "\n");
+    }
+    List<Posicion> jugadasN = damaN.obtenerJugadasLegales();
+    System.out.println("--- Jugas dama negra ---");
+    for (Posicion jugada: jugadasN) {
       System.out.println("Fila: " + jugada.obtenerFila() + "\t" +
                          "Columna: " + jugada.obtenerColumna() + "\n");
     }
