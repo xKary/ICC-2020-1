@@ -1,3 +1,5 @@
+package ajedrez.piezas;
+import java.util.List;
 /**
  * Programa para probar la lista de jugadas válidas de la pieza Dama
  * @author Prado Oropeza Karina Vianey
