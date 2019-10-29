@@ -6,7 +6,6 @@ import java.util.List;
 */
 public class pruebaDama {
   public static void main(String[] args) {
-    Tablero tab = Tablero.obtenerInstancia();
 
     Peon [] negros = new Peon [5];
     Peon [] blancos = new Peon[5];
