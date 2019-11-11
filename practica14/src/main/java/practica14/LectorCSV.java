@@ -16,12 +16,28 @@ public class LectorCSV {
    * @return List<String[]> - lista con los datos del archivo
   */
   public static List<String[]> leer (String ruta) throws IOException{
-    LinkedList<String[]> separados = new LinkedList<>();
+    //Verificar que sea un archivo válido
+    if (!ruta.substring(ruta.length()-3,ruta.length()).equals("csv")) {
+      throw new IOException("Archivo no válido");
+    }
+
     List<String> lineas = Files.readAllLines(Paths.get(ruta));
+    LinkedList<String[]> separados = new LinkedList<>();
+
     //Separar cada linea del archivo y obtener arreglos
     for (String linea: lineas) {
-      separados.add(linea.trim().split(","));
+      String[] coor = linea.split(",");
+
+      if (!coor[0].trim().isBlank() && !coor[1].trim().isBlank())
+        separados.add(coor);
+      else
+       throw new IOException("Hay coordenas no válidas");
+
     }
+
+    //Quitar el primer elemento de separados, ya que son los titulos de las columanas
+    separados.remove(0);
+    
     return separados;
   }
 

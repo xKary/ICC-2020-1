@@ -46,23 +46,14 @@ public class Graficacion {
           //Obtener las coordenadas del archivo csv
           List<String[]> coordenadas = LectorCSV.leer("src/main/resources/317133231.csv");
 
-          //Quitar el primer elemento de coordenadas, ya que es ["x","y"]
-          coordenadas.remove(0);
-
           //Inicializar los arreglos
           equis = new double[coordenadas.size()];
           yes = new double[coordenadas.size()];
 
-          for (String[] coordenada: coordenadas) {
-            //Quitar espacios en blanco
-            String coorX =  coordenada[0].trim();
-            String coorY = coordenada[1].trim();
-            //Verificar que la coordenada no este vacia
-            if (coorX.length() != 0) {
-              equis[i] = Double.valueOf(coorX);
-              yes[i] = Double.valueOf(coorY);
-              i++;
-            }
+          for (String[] coordenada: coordenadas){
+            equis[i] = Double.valueOf(coordenada[0]);
+            yes[i] = Double.valueOf(coordenada[1]);
+            i++;
           }
 
         } catch(Exception e) {
@@ -116,7 +107,7 @@ public class Graficacion {
         sampleSeries.setXYSeriesRenderStyle(XYSeriesRenderStyle.Scatter);
         sampleSeries.setMarkerColor(XChartSeriesColors.RED);
 
-        //Calcular las y's para la linea, usando la 1ra y última x (y = mx + b) 
+        //Calcular las y's para la linea, usando la 1ra y última x (y = mx + b)
         double y1 = (m * equis[0]) + b,
                y2 = (m * equis[equis.length - 1]) + b;
 
