@@ -1,10 +1,11 @@
+package ajedrez.piezas;
+import java.util.List;
 /**
  * Programa para probar la lista de jugadas válidas de la pieza Dama
  * @author Prado Oropeza Karina Vianey
 */
 public class pruebaDama {
   public static void main(String[] args) {
-    Tablero tab = Tablero.obtenerInstancia();
 
     Peon [] negros = new Peon [5];
     Peon [] blancos = new Peon[5];
