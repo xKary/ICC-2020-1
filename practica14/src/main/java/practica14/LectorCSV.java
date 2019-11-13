@@ -16,10 +16,6 @@ public class LectorCSV {
    * @return List<String[]> - lista con los datos del archivo
   */
   public static List<String[]> leer (String ruta) throws IOException{
-    //Verificar que sea un archivo válido
-    if (!ruta.substring(ruta.length()-3,ruta.length()).equals("csv")) {
-      throw new IOException("Archivo no válido");
-    }
 
     List<String> lineas = Files.readAllLines(Paths.get(ruta));
     LinkedList<String[]> separados = new LinkedList<>();
@@ -30,8 +26,6 @@ public class LectorCSV {
 
       if (!coor[0].trim().isBlank() && !coor[1].trim().isBlank())
         separados.add(coor);
-      else
-       throw new IOException("Hay coordenas no válidas");
 
     }
 
