@@ -26,5 +26,10 @@ public class Prueba{
     Metodos.repetir("Hola")
            .limit(10)
            .forEach(System.out::println);
+
+    System.out.println("\nMultiplos de un número (3)");
+    //utilizar el metodo multiplos, para obtener 50 multiplos de 3
+    Metodos.multiplos(3)
+           .forEach(System.out::println);;
   }
 }

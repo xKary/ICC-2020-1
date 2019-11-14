@@ -4,6 +4,8 @@ import java.util.stream.Stream;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.Comparator;
+import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 /**
  * Clase que utiliza la interfaz Stream
  * @author Karina Prado Oropeza
@@ -47,6 +49,22 @@ public class Metodos{
         return s.repeat(i++);
       }
     });
+  }
+  /**
+   * Método que recibe un entero y regresa una lista con 50 múltiplos
+   * aleatorios
+   * @param k - entero
+   * @return List<String> -lista con 50 multiplos de k
+  */
+  public static List<String> multiplos(int k){
+    //Generar IntStream con números entre el 0 y 1000
+    IntStream multi = IntStream.generate(()
+                     -> { return (int) (Math.random() * 1000 ); });
+
+    return multi.filter(m -> (m%k == 0))
+                .limit(50)
+                .mapToObj(String::valueOf)
+                .collect(Collectors.toList());
   }
 
 }
