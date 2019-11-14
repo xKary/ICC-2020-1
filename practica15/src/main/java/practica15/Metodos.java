@@ -59,7 +59,7 @@ public class Metodos{
   public static List<String> multiplos(int k){
     //Generar IntStream con números entre el 0 y 1000
     IntStream multi = IntStream.generate(()
-                     -> { return (int) (Math.random() * 1000 ); });
+                     -> { return (int) (Math.random() * 1000); });
 
     return multi.filter(m -> (m%k == 0))
                 .limit(50)
