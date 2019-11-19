@@ -34,20 +34,16 @@ public class Main extends PApplet {
 
 	@Override
 	public void setup() {
-		try (var in = new ObjectInputStream(new FileInputStream("juego"))){
+		try (var in = new ObjectInputStream(new FileInputStream("juego"))) {
 			tablero = (Tablero) in.readObject();
-		} catch(IOException | ClassNotFoundException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			tablero = Tablero.obtenerInstancia();
 		}
 		imagenes = new HashMap<>();
-		imagenes.put("PeonBLANCO",
-					 loadImage(getClass().getResource("/w-pawn.png").getPath()));
-		imagenes.put("PeonNEGRO",
-					 loadImage(getClass().getResource("/b-pawn.png").getPath()));
-		imagenes.put("DamaBLANCO",
-					 loadImage(getClass().getResource("/w-queen.png").getPath()));
-		imagenes.put("DamaNEGRO",
-					 loadImage(getClass().getResource("/b-queen.png").getPath()));
+		imagenes.put("PeonBLANCO", loadImage(getClass().getResource("/w-pawn.png").getPath()));
+		imagenes.put("PeonNEGRO", loadImage(getClass().getResource("/b-pawn.png").getPath()));
+		imagenes.put("DamaBLANCO", loadImage(getClass().getResource("/w-queen.png").getPath()));
+		imagenes.put("DamaNEGRO", loadImage(getClass().getResource("/b-queen.png").getPath()));
 		noLoop();
 	}
 
@@ -64,72 +60,64 @@ public class Main extends PApplet {
 				} else {
 					fill(0x44000000);
 				}
-				rect(j * (height / 8), i * (height / 8),
-					 height / 8, height / 8);
+				rect(j * (height / 8), i * (height / 8), height / 8, height / 8);
 			}
 		}
 
-
-
 		if (piezaSeleccionada != null) {
 			int fila = piezaSeleccionada.obtenerPosicion().obtenerFila(),
-				columna = piezaSeleccionada.obtenerPosicion().obtenerColumna();
+					columna = piezaSeleccionada.obtenerPosicion().obtenerColumna();
 			stroke(0xffff0000);
 			strokeWeight(3);
-			for (Posicion pos: piezaSeleccionada.obtenerJugadasLegales()) {
+			for (Posicion pos : piezaSeleccionada.obtenerJugadasLegales()) {
 				fill((pos.obtenerFila() + pos.obtenerColumna()) % 2 == 0 ? 0xffffffff : 0x44000000);
-				rect(pos.obtenerColumna() * (width / 8),
-					 pos.obtenerFila() * (width / 8),
-				 	 width / 8, width / 8);
+				rect(pos.obtenerColumna() * (width / 8), pos.obtenerFila() * (width / 8), width / 8, width / 8);
 			}
 			stroke(0xff0000ff);
 			strokeWeight(3);
 			fill((fila + columna) % 2 == 0 ? 0xffffffff : 0x44000000);
-			rect(columna * (width / 8), fila * (width / 8),
-				 width / 8, width / 8);
+			rect(columna * (width / 8), fila * (width / 8), width / 8, width / 8);
 		}
 
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				Pieza pieza = tablero.obtenerPieza(i, j);
 				if (pieza != null) {
-					image(imagenes.get(pieza.getClass().getSimpleName() + pieza.obtenerColor()),
-						  j * (height / 8), i * (height / 8),
-						  height / 8, height / 8);
+					image(imagenes.get(pieza.getClass().getSimpleName() + pieza.obtenerColor()), j * (height / 8),
+							i * (height / 8), height / 8, height / 8);
 				}
 			}
 		}
 	}
 
 	@Override
-    public void mouseClicked(MouseEvent event) {
-    	int fila = event.getY() / (width / 8);
-    	int columna = event.getX() / (width / 8);
-    	if (seleccionandoJugada) {
-    		tablero.moverPieza(piezaSeleccionada, fila, columna);
-    		seleccionandoJugada = false;
-    		piezaSeleccionada = null;
-    	} else {
-    		piezaSeleccionada = tablero.obtenerPieza(fila, columna);
-    		if (piezaSeleccionada == null
-    				|| tablero.obtenerTurno() != piezaSeleccionada.obtenerColor()) {
-    			piezaSeleccionada = null;
-    		}
-    		seleccionandoJugada = piezaSeleccionada != null;
-    	}
+	public void mouseClicked(MouseEvent event) {
+		int fila = event.getY() / (width / 8);
+		int columna = event.getX() / (width / 8);
+		if (seleccionandoJugada) {
+			tablero.moverPieza(piezaSeleccionada, fila, columna);
+			seleccionandoJugada = false;
+			piezaSeleccionada = null;
+		} else {
+			piezaSeleccionada = tablero.obtenerPieza(fila, columna);
+			if (piezaSeleccionada == null || tablero.obtenerTurno() != piezaSeleccionada.obtenerColor()) {
+				piezaSeleccionada = null;
+			}
+			seleccionandoJugada = piezaSeleccionada != null;
+		}
 
-    	redraw();
-    }
+		redraw();
+	}
 
 	@Override
-		public void exit(){
-			try (var out = new ObjectOutputStream(new FileOutputStream("juego"))) {
-				out.writeObject(tablero);
-			} catch(IOException ioe) {
-				ioe.printStackTrace();
-			} finally{
-				dispose();
-				System.exit(0);
-			}
+	public void exit() {
+		try (var out = new ObjectOutputStream(new FileOutputStream("juego"))) {
+			out.writeObject(tablero);
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		} finally {
+			dispose();
+			System.exit(0);
 		}
+	}
 }

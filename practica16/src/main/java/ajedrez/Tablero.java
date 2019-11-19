@@ -8,9 +8,9 @@ import ajedrez.piezas.Pieza;
 import ajedrez.piezas.Dama;
 import ajedrez.piezas.Peon;
 
-public class Tablero implements Serializable{
+public class Tablero implements Serializable {
 
-    private class Casilla implements Serializable{
+    private class Casilla implements Serializable {
 
         private Pieza pieza;
 
@@ -43,14 +43,15 @@ public class Tablero implements Serializable{
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 casillas[i][j] = new Casilla();
-                if (i >= 2 && i <= 5) continue; // Casillas vacías
+                if (i >= 2 && i <= 5)
+                    continue; // Casillas vacías
 
                 Posicion posicion = new Posicion(i, j);
                 Color color = (i >= 6) ? Color.BLANCO : Color.NEGRO;
                 Pieza pieza = null;
                 if (i == 1 || i == 6) {
                     pieza = new Peon(color, posicion);
-                }                                       // switch
+                } // switch
                 if (i == 7 && j == 3) {
                     pieza = new Dama(color, posicion);
                 }
@@ -83,13 +84,11 @@ public class Tablero implements Serializable{
         if (pieza == null
                 || (fila == pieza.obtenerPosicion().obtenerFila()
                         && columna == pieza.obtenerPosicion().obtenerColumna())
-                || turno != pieza.obtenerColor()
-                || !pieza.esJugadaLegal(fila, columna)) {
+                || turno != pieza.obtenerColor() || !pieza.esJugadaLegal(fila, columna)) {
             return;
         }
         Pieza capturada = obtenerPieza(fila, columna);
-        asignarPieza(null, pieza.obtenerPosicion().obtenerFila(),
-                     pieza.obtenerPosicion().obtenerColumna());
+        asignarPieza(null, pieza.obtenerPosicion().obtenerFila(), pieza.obtenerPosicion().obtenerColumna());
         asignarPieza(pieza, fila, columna);
         if (turno == Color.BLANCO) {
             piezasNegrasVivas.remove(capturada);

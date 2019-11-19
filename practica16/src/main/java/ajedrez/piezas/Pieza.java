@@ -3,7 +3,7 @@ package ajedrez.piezas;
 import java.io.Serializable;
 import java.util.List;
 
-public abstract class Pieza implements Serializable{
+public abstract class Pieza implements Serializable {
 
     private Color color;
     private Posicion posicion;
@@ -16,8 +16,7 @@ public abstract class Pieza implements Serializable{
     public abstract List<Posicion> obtenerJugadasLegales();
 
     public boolean esJugadaLegal(int fila, int columna) {
-        return obtenerJugadasLegales().
-                contains(new Posicion(fila, columna));
+        return obtenerJugadasLegales().contains(new Posicion(fila, columna));
     }
 
     public Color obtenerColor() {
