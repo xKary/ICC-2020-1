@@ -121,7 +121,7 @@ public class Main extends PApplet {
     	redraw();
     }
 
-		@Override
+	@Override
 		public void exit(){
 			try (var out = new ObjectOutputStream(new FileOutputStream("juego"))) {
 				out.writeObject(tablero);
