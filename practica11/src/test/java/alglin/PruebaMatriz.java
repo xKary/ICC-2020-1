@@ -79,18 +79,18 @@ public class PruebaMatriz {
         m1 = new Matriz(m, n);
         String filaEsperada[] = new String[n];
         java.util.Arrays.fill(filaEsperada, "0.0");
-        m1.toString().lines().forEach(
-            fila -> assertThat(fila).isEqualTo(String.join(" ", filaEsperada)));
-        for (var matriz: new Matriz[]{m2, m3, m4}) {
+        m1.toString().lines().forEach(fila -> assertThat(fila).isEqualTo(String.join(" ", filaEsperada)));
+        for (var matriz : new Matriz[] { m2, m3, m4 }) {
             m2.toString().lines().forEach(new java.util.function.Consumer<String>() {
                 int i, j;
+
                 public void accept(String fila) {
-                    for (String dato: fila.split(" ")) {
-                        assertThat(Double.parseDouble(dato))
-                            .isWithin(TOLERANCE).of(m2.obtenerEntrada(i, j));
+                    for (String dato : fila.split(" ")) {
+                        assertThat(Double.parseDouble(dato)).isWithin(TOLERANCE).of(m2.obtenerEntrada(i, j));
                         j++;
                     }
-                    j = 0; i++;
+                    j = 0;
+                    i++;
                 }
             });
         }
@@ -104,7 +104,7 @@ public class PruebaMatriz {
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 assertThat(suma1.obtenerEntrada(i, j)).isWithin(TOLERANCE)
-                    .of(m1.obtenerEntrada(i, j) + m2.obtenerEntrada(i, j));
+                        .of(m1.obtenerEntrada(i, j) + m2.obtenerEntrada(i, j));
             }
         }
     }
@@ -116,8 +116,7 @@ public class PruebaMatriz {
         Matriz mult = m1.escalar(c);
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                assertThat(mult.obtenerEntrada(i, j)).isWithin(TOLERANCE)
-                    .of(m1.obtenerEntrada(i, j) * c);
+                assertThat(mult.obtenerEntrada(i, j)).isWithin(TOLERANCE).of(m1.obtenerEntrada(i, j) * c);
             }
         }
     }
@@ -181,7 +180,7 @@ public class PruebaMatriz {
         }
         assertThat(m4.determinante()).isWithin(TOLERANCE).of(0);
         Matriz matriz = new Matriz(4, 4);
-        double[][] ds = {{9, 1, 2, 8}, {2, 9, 7, 3}, {3, 4, 8, 5}, {5, 8, 3, 3}};
+        double[][] ds = { { 9, 1, 2, 8 }, { 2, 9, 7, 3 }, { 3, 4, 8, 5 }, { 5, 8, 3, 3 } };
         p = 4;
         for (int i = 0; i < p; i++) {
             for (int j = 0; j < p; j++) {
